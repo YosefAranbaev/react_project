@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
 import { Card, CardContent } from '@mui/material';
-
+import CreateRoundedIcon from '@mui/icons-material/CreateRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 class Idea extends Component { 
     constructor(props) {
         super(props);
@@ -53,18 +54,18 @@ class Idea extends Component {
 
     renderUI() { 
         return (
-            <Card class="card" sx={{maxWidth:375, marginBottom:'10px'}} raised={true}>
+            <Card class="card" >
             {/* <div className="idea">                 */}
-            <CardContent>
-                <img src='images/image.png' alt="Italian Trulli"/>
+            {/* <CardContent> */}
+                <img src={this.props.img} alt="Italian Trulli"/>
                 <div>{this.props.children}</div>                
-                <span>                    
-                    {/* <button onClick = { this.edit }>Edit</button>                    
-                    <button onClick = { this.delete }>Delete</button>     */}
+                <span className='buttons'>                    
+                    <button onClick = { this.edit }><CreateRoundedIcon sx={{ color: 'white',marginLeft:'-2px'}}/></button>                    
+                    <button onClick = { this.delete }><DeleteRoundedIcon sx={{ color: 'white',marginLeft:'-2px'}}/></button>    
                     {/* <button onClick = { this.add }>Add</button>               */}
                 </span>            
             {/* </div> */}
-            </CardContent>
+            {/* </CardContent> */}
             </Card>
         )
     }

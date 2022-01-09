@@ -1,20 +1,24 @@
-import { Tooltip } from '@mui/material';
+import { Tooltip, TextField } from '@mui/material';
 import React, { Component } from 'react';
 import Idea from './Idea';
 import { MdAdd } from 'react-icons/md';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import SearchIcon from '@mui/icons-material/Search';
+import Form from './Form';
 // import {ModeEditIcon} from '@mui/icons-material/ModeEdit';
 // import {Tooltip } from '@mui/material';
 // import ideasData from './../data/ideas.json'
+import FormButton from "./FormButton";
 class IdeasList extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             ideas: [
-                { id: 3, idea: "Tripper", group: "Tamar, Haim",img:"../images/image-1.png" },
-                { id: 7, idea: "Cyber Crawler", group: "Dan, Eden",img:"../images/image-2.png" },
-                { id: 8, idea: "Intellimap", group: "Dima, Or, Daria", img:"../images/image-3.png"},
+                { id: 3, idea: "Phi Phi Islands", group: "Thiland", img: "images/image.png", cost: "$1044" },
+                { id: 7, idea: "Cyber Crawler", group: "Thiland", img: "images/image-2.png", cost: "$1044" },
+                { id: 8, idea: "Intellimap", group: "Maldives", img: "images/image-3.png", cost: "$1044" },
             ]
         }
 
@@ -53,19 +57,28 @@ class IdeasList extends Component {
         }))
     }
     eachIdea(item, i) {
-        return <Idea key={i} index={item.id} onChange={this.update} onDelete={this.delete}>
-            <h4>{item.idea}</h4><h5>By: {item.group}</h5>
-        </Idea>
+        return <Idea key={i} img={item.img} index={item.id} onChange={this.update} onDelete={this.delete}>
+            <h4>{item.idea}</h4><LocationOnIcon id="loc" sx={{ color: '#FF6647', fontSize: 17, marginTop: '-13px' }} /><h5>{item.group}
+                <span>{item.cost}</span></h5></Idea>
     }
-
     render() {
         return (
-            <div className="ideas-list">
-                {/* <img src="../images/image-1.png" alt="Italian Trulli"/> */}
-                {this.state.ideas.map(this.eachIdea)}
-                <Tooltip title="Add new Idea">
-                    <button onClick={this.add}><MdAdd /><ModeEditIcon /></button>
-                </Tooltip>
+            <div>
+                <Form></Form>
+                <FormButton></FormButton>
+                <SearchIcon className='searchicon-1' sx={{ width: '18.75px', height: '18.75px' }} />    
+                <input placeholder="Search by name or location" className="search" type="text" tabindex="1" name="name" autocomplete="off" />
+                <button className='searchbutton'><SearchIcon sx={{ width: '28px', height: '28px',color:'white' }} /></button>                    
+                {/* <TextField id="outlined-basic" label="Search by name or location" variant="outlined" /> */}
+                <div className="ideas-list">
+                    {/* <img src="../images/image-1.png" alt="Italian Trulli"/> */}
+                    {this.state.ideas.map(this.eachIdea)}
+                    {/* <Tooltip title="Add new Idea"> */}
+                    {/* <button onClick={this.add}> */}
+                    {/* <MdAdd /><ModeEditIcon /> */}
+                    {/* </button> */}
+                    {/* </Tooltip> */}
+                </div>
             </div>
         )
     }
