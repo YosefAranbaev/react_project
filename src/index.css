@@ -5,26 +5,139 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F6F7FB;
+  ;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.aa {
+  position: absolute;
+  margin-left: 1000px;
+}
+
 /*Card*/
-.card{
-  background-color: aqua;
+.card {
+  background-color: white;
   width: 293px;
   height: 261px;
-  margin-top: 5px;
+  margin-top: 30px;
   border-radius: 25px;
+  margin-left: 30px;
 }
-.card img{
-  margin-top: -3.62px;
-  margin-left: -4px;
+
+.card img {
+  margin-top: 12.62px;
+  margin-left: 13.67px;
   height: 170.38px;
   width: 268.19px;
 }
+
+.card h4 {
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+#loc {
+  /* margin-top: 2px; */
+  /* background-color: orange; */
+  /* background: orange; */
+  position: absolute;
+  /* margin-top: -1304px; */
+  margin-left: 13.53px;
+}
+
+.card h5 {
+  margin-left: 32px;
+  margin-top: -13px;
+  /* font-family: Alef; */
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 127.7%;
+  color: #353646;
+  opacity: 0.4;
+}
+
+.ideas-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 773px;
+  width: 667px;
+  margin-left: 30px;
+}
+
+.card h5 span {
+  margin-left: 142.38px;
+  line-height: 127.7%;
+  font-family: 'Alef';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.buttons {
+  position: absolute;
+  margin-top: -100px;
+  margin-left: 196.02px;
+}
+
+.buttons button, .searchbutton {
+  width: 35.76px;
+  height: 35.76px;
+  background-color: #FF6647;
+  border: 2.10345px solid #FFFFFF;
+  box-shadow: 0px 4.2069px 4.2069px rgba(255, 102, 71, 0.25);
+  border-radius: 100px;
+}
+
+.searchbutton {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background: #F86549;
+  margin-top: 30px;
+  margin-left: 9px;
+}
+
+.search {
+  border: 1px solid #ccc;
+  /* position: absolute; */
+  width: 326px;
+  height: 52px;
+  margin-left: 165px;
+  margin-top: 30px;
+  background: #FFFFFF;
+  box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.02);
+  border-radius: 26px;
+  text-align: center;
+  border-style: none;
+}
+
+.forminput::placeholder {
+  position: absolute;
+  /* margin-left: 11px; */
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #AFAFAF;
+}
+
+.searchicon-1 {
+  position: absolute;
+  margin-left: 180px;
+  margin-top: 48px;
+  /* width: 18.75px;
+  height: 18.75px; */
+  /* margin-left: 2px;
+  margin-top: 2px; */
+}
+
 /* .card h4{
   margin-top: -10px;
 }

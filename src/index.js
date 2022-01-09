@@ -4,7 +4,6 @@ import './index.css';
 // import Idea from './Components/Idea';
 import IdeasList from './Components/IdeasList';
 import reportWebVitals from './reportWebVitals';
-
 ReactDOM.render(<IdeasList />,document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
