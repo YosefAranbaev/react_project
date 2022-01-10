@@ -16,7 +16,7 @@ const FormButton = (props) => {
 
     }
     return (
-        <button style={button}>+</button>
+        <button onClick={props.onClick} style={button}>+</button>
     );
 };
 export default FormButton;
