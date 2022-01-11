@@ -6,14 +6,46 @@ import FormButton from "./FormButton";
 import EventEmitter from "../EventEmitter";
 // const EventEmitter = require('events');
 // const emitter = new EventEmitter();
-
 const Form = (props) => {
+    const buttonV={
+        position: 'absolute',
+        width: '52px',
+        height: '52px',
+        backgroundColor: '#F86549',
+        borderRadius: '26px',
+        borderStyle: 'none',
+        marginLeft: '1070px',
+        marginTop: '640px',
+        fontSize: '25px',
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+    }
+    const buttonX = {
+        position: 'absolute',
+        width: '52px',
+        height: '52px',
+        backgroundColor: '#F86549',
+        borderRadius: '26px',
+        borderStyle: 'none',
+        marginLeft: '1000px',
+        marginTop: '640px',
+        fontSize: '25px',
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+    }
     const [newVacation, setNewVacation] = useState({
+        'formPic': "url('images/formpic.png')",
+        'mode': 0,
         'name': null,
         'location': null,
         'price': null,
         'imageUrl': null
     });
+    const removePic = {
+        backgroundColor: 'red'
+    }
     const header = {
         marginLeft: '199px',
         fontSize: '25px',
@@ -37,7 +69,9 @@ const Form = (props) => {
             'price': vacation.price,
             'imageUrl': vacation.imageUrl
         };
-        console.log(vacation);
+        newVacation.mode = 1;
+        newVacation.formPic = 'none';
+        console.log(newVacation.mode);
         // newVacation.name="hello";
         setNewVacation(vacationToEdit);
     });
@@ -53,15 +87,56 @@ const Form = (props) => {
     //     props.onSubmit(newVacation);
     //     // console.log(newVacation);
     // }
-    const addVac = ()=>{
+    const vbutton =()=>{
+        // newVacation.mode = 0;
+        // newVacation.formPic = "url('images/formpic.png')";
+        // newVacation.id=null;
+        // newVacation.name = "";
+        // newVacation.location="";
+        // newVacation.price="";
+        // newVacation.imageUrl="";
         // console.log(newVacation);
-        EventEmitter.emit('add',newVacation);
+        // setNewVacation(prevState => {
+        //     return {
+        //         ...prevState,
+        //         newVacation
+        //     }
+        // });
+        const obj = {
+            'id':newVacation.id,
+            'idea':newVacation.name,
+            'group': newVacation.location,
+            'cost': newVacation.price,
+            'img': newVacation.imageUrl
+        }
+        EventEmitter.emit('update',obj);
+    }
+    const addVac = () => {
+        // console.log(newVacation);
+        EventEmitter.emit('add', newVacation);
+    }
+    const xbutton = () => {
+        // alert("hello");
+        newVacation.mode = 0;
+        newVacation.formPic = "url('images/formpic.png')";
+        newVacation.id=null;
+        newVacation.name = "";
+        newVacation.location="";
+        newVacation.price="";
+        newVacation.imageUrl="";
+        console.log(newVacation);
+        setNewVacation(prevState => {
+            return {
+                ...prevState,
+                newVacation
+            }
+        });
     }
     return (
         <React.Fragment>
             <Card sx={{
                 width: '618px', height: '552px', backgroundColor: 'white', borderRadius: '25px', position: 'absolute',
-                position: 'absolute', marginLeft: '772px', marginTop: '114px', backgroundImage: "url('images/formpic.png')",
+                position: 'absolute', marginLeft: '772px', marginTop: '114px', backgroundImage: newVacation.formPic,
                 backgroundRepeat: 'no-repeat', backgroundPosition: '50% 100%',
                 // backgroundPosition: 'center',
             }}>
@@ -77,8 +152,11 @@ const Form = (props) => {
                 {/* <FormInput type="name"></FormInput> */}
 
             </Card>
-            <FormButton onClick={addVac}/>
+            {newVacation.mode === 0 ? <FormButton mode={newVacation.mode} onClick={addVac} /> :
+                <><button onClick={xbutton} style={buttonX}>X</button><button onClick={vbutton} style={buttonV}>V</button></>}
+            {/* <FormButton mode={newVacation.mode} onClick={addVac}/> */}
         </React.Fragment>
+
     );
 };
 

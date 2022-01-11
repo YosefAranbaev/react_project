@@ -33,7 +33,7 @@ const IdeasList = (props) => {
         return ++max;
     }
     const update = (newVac) => {
-        newVac.preventDefault();
+        // newVac.preventDefault();
         // props.onChange(newVac, props);
         setVacations(prevState => (
             prevState.map(
@@ -41,6 +41,18 @@ const IdeasList = (props) => {
             )
         ));
     }
+    EventEmitter.addListener('update', vacation => {
+        // props.onChange(newVac, props);
+        update(vacation);
+        // console.log(vacation);
+        // console.log(vacations);
+        // // vacation.preventDefault();
+        // setVacations(prevState => (
+        //     prevState.map(
+        //         idea => idea.id !== vacation.id ? idea : { ...idea, vacation }
+        //     )
+        // ));
+    });
     const deleteVacation = (id) => {
         setVacations(prevState => (
             prevState.filter(idea => idea.id !== id)
