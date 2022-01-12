@@ -7,7 +7,7 @@ import EventEmitter from "../EventEmitter";
 // const EventEmitter = require('events');
 // const emitter = new EventEmitter();
 
- const Idea =(props)=> { 
+ const Vacation =(props)=> { 
 
     const edit = ()=> {
         console.log(props);
@@ -52,7 +52,7 @@ import EventEmitter from "../EventEmitter";
     // }
                
         return (
-            <Card className="card" >
+            <Card className="card" sx={{boxShadow:'none',display:props.display}} >
             {/* <div className="idea">                 */}
             {/* <CardContent> */}
                 <img src={props.img} alt="Italian Trulli"/>
@@ -69,4 +69,4 @@ import EventEmitter from "../EventEmitter";
 
 }
 
-export default  Idea;
+export default  Vacation;

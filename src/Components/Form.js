@@ -36,12 +36,14 @@ const Form = (props) => {
         fontWeight: 'bold',
     }
     const [newVacation, setNewVacation] = useState({
-        'formPic': "url('images/formpic.png')",
-        'mode': 0,
         'name': null,
         'location': null,
         'price': null,
         'imageUrl': null
+    });
+    const [newVacationClick, setNewVacationClick] = useState({
+        'formPic': "url('images/formpic.png')",
+        'mode': 0,
     });
     const removePic = {
         backgroundColor: 'red'
@@ -69,9 +71,9 @@ const Form = (props) => {
             'price': vacation.price,
             'imageUrl': vacation.imageUrl
         };
-        newVacation.mode = 1;
+        newVacationClick.mode = 1;
         newVacation.formPic = 'none';
-        console.log(newVacation.mode);
+        console.log(newVacationClick.mode);
         // newVacation.name="hello";
         setNewVacation(vacationToEdit);
     });
@@ -88,20 +90,6 @@ const Form = (props) => {
     //     // console.log(newVacation);
     // }
     const vbutton =()=>{
-        // newVacation.mode = 0;
-        // newVacation.formPic = "url('images/formpic.png')";
-        // newVacation.id=null;
-        // newVacation.name = "";
-        // newVacation.location="";
-        // newVacation.price="";
-        // newVacation.imageUrl="";
-        // console.log(newVacation);
-        // setNewVacation(prevState => {
-        //     return {
-        //         ...prevState,
-        //         newVacation
-        //     }
-        // });
         const obj = {
             'id':newVacation.id,
             'idea':newVacation.name,
@@ -110,14 +98,32 @@ const Form = (props) => {
             'img': newVacation.imageUrl
         }
         EventEmitter.emit('update',obj);
+        newVacationClick.mode = 0;
+        newVacation.formPic = "url('images/formpic.png')";
+        newVacation.id=null;
+        newVacation.name = "";
+        newVacation.location="";
+        newVacation.price="";
+        newVacation.imageUrl="";
+        // console.log(newVacation);
+        setNewVacation(prevState => {
+            return {
+                ...prevState,
+                newVacation
+            }
+        });
     }
     const addVac = () => {
         // console.log(newVacation);
         EventEmitter.emit('add', newVacation);
+        // setNewVacation({})
+        // setNewVacationClick(prevState=>({...prevState,'formPic': "url('images/formpic.png')"}))
+        // setNewVacationClick(prevState=>({...prevState,'mode': 0}))
+        // console.log(newVacation);
     }
     const xbutton = () => {
         // alert("hello");
-        newVacation.mode = 0;
+        newVacationClick.mode = 0;
         newVacation.formPic = "url('images/formpic.png')";
         newVacation.id=null;
         newVacation.name = "";
@@ -137,7 +143,7 @@ const Form = (props) => {
             <Card sx={{
                 width: '618px', height: '552px', backgroundColor: 'white', borderRadius: '25px', position: 'absolute',
                 position: 'absolute', marginLeft: '772px', marginTop: '114px', backgroundImage: newVacation.formPic,
-                backgroundRepeat: 'no-repeat', backgroundPosition: '50% 100%',
+                backgroundRepeat: 'no-repeat', backgroundPosition: '50% 100%', boxShadow:'none',
                 // backgroundPosition: 'center',
             }}>
                 {/* <div style={formpic}></div> */}
@@ -152,7 +158,7 @@ const Form = (props) => {
                 {/* <FormInput type="name"></FormInput> */}
 
             </Card>
-            {newVacation.mode === 0 ? <FormButton mode={newVacation.mode} onClick={addVac} /> :
+            {newVacationClick.mode === 0 ? <FormButton mode={newVacationClick.mode} onClick={addVac} /> :
                 <><button onClick={xbutton} style={buttonX}>X</button><button onClick={vbutton} style={buttonV}>V</button></>}
             {/* <FormButton mode={newVacation.mode} onClick={addVac}/> */}
         </React.Fragment>
