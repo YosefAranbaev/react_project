@@ -6,9 +6,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import SearchIcon from '@mui/icons-material/Search';
 import Form from './Form';
-// import {ModeEditIcon} from '@mui/icons-material/ModeEdit';
-// import {Tooltip } from '@mui/material';
-// import ideasData from './../data/ideas.json'
 import FormButton from "./FormButton";
 import EventEmitter from "../EventEmitter";
 const VacationList = (props) => {
@@ -19,20 +16,11 @@ const VacationList = (props) => {
             { id: 2, idea: "Intellimap", group: "Maldives", img: "images/image-3.png", cost: "$1044", display: "block" },
         ])
     const [search, setSearch] = useState("");
-    const add = ({ id = null, txt = 'default title', grp = 'defaule group' }) => {
-        setVacations(prevState => (
-            [
-                ...prevState, {
-                    id: id !== null ? id : nextId(prevState),
-                    idea: txt,
-                    group: grp
-                }]
-        ))
+
+    const costColor ={
+        color:'#34A59F',
     }
-    const nextId = (ideas = []) => {
-        let max = ideas.reduce((prev, curr) => prev.id > curr.id ? prev.id : curr.id, 0);
-        return ++max;
-    }
+
     const update = (newVac) => {
         setVacations(prevState => (
             prevState.map(
@@ -41,16 +29,7 @@ const VacationList = (props) => {
         ));
     }
     EventEmitter.addListener('update', vacation => {
-        // props.onChange(newVac, props);
         update(vacation);
-        // console.log(vacation);
-        // console.log(vacations);
-        // // vacation.preventDefault();
-        // setVacations(prevState => (
-        //     prevState.map(
-        //         idea => idea.id !== vacation.id ? idea : { ...idea, vacation }
-        //     )
-        // ));
     });
     const deleteVacation = (id) => {
         setVacations(prevState => (
@@ -61,9 +40,8 @@ const VacationList = (props) => {
         return <Vacation key={i} img={item.img
         } cost={item.cost} display={item.display} idea={item.idea} group={item.group} index={item.id} onChange={update} onDelete={deleteVacation} >
             <h4>{item.idea}</h4><LocationOnIcon id="loc" sx={{ color: '#FF6647', fontSize: 17, marginTop: '-13px' }} /><h5>{item.group}
-                <span>{item.cost}</span></h5></Vacation>
+                <span style={costColor}>{item.cost}</span></h5></Vacation>
     }
-    // getFormValues()
     const onSave = (values) => {
         update(values);
         console.log(values);
@@ -71,8 +49,7 @@ const VacationList = (props) => {
     const findVacations = () => {
         console.log(search);
         console.log(vacations);
-        if(search === "")
-        {
+        if (search === "") {
             setVacations(prevState => (
                 prevState.map(
                     vac => vac.idea.includes(search) === false ? vac : { ...vac, display: 'display' }
@@ -88,8 +65,6 @@ const VacationList = (props) => {
         }
     }
     EventEmitter.addListener('add', vacation => {
-        // console.log(vacation);
-        // console.log(vacations.length+1);
         const vacationToEdit = {
             'id': vacations.length + 1,
             'idea': vacation.name,
@@ -97,26 +72,27 @@ const VacationList = (props) => {
             'cost': vacation.price,
             'img': vacation.imageUrl
         };
+        if (vacationToEdit.idea == null)
+            vacationToEdit.idea = "none";
+        if (vacationToEdit.group == null)
+            vacationToEdit.group = 'none';
+        if (vacationToEdit.cost == null)
+            vacationToEdit.cost = '$0';
+        if (vacationToEdit.img != "images/image.png"||vacationToEdit.img != "images/image-1.png"
+        ||vacationToEdit.img != "images/image-2.png"||vacationToEdit.img != "images/image-3.png"
+        ||vacationToEdit.img != "images/image-4.png"||vacationToEdit.img != "images/image-5.png")
+            vacationToEdit.img = 'images/image.png';
         setVacations(prevState => [...prevState, vacationToEdit])
         console.log(vacations);
-        //    console.log(vacations);
     });
     return (
         <div>
             <Form onSubmit={onSave} />
-            {/* <FormButton ></FormButton> */}
             <SearchIcon className='searchicon-1' sx={{ width: '18.75px', height: '18.75px' }} />
-            <input onChange={(e) => setSearch(e.target.value)} placeholder="Search by name or location" className="search" type="text" tabIndex="1" name="name" autoComplete="off" />
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="Search by name or location" className="search" type="text" name="name" autoComplete="off" />
             <button onClick={findVacations} className='searchbutton'><SearchIcon sx={{ width: '28px', height: '28px', color: 'white' }} /></button>
-            {/* <TextField id="outlined-basic" label="Search by name or location" variant="outlined" /> */}
             <div className="ideas-list">
-                {/* <img src="../images/image-1.png" alt="Italian Trulli"/> */}
                 {vacations.map(eachIdea)}
-                {/* <Tooltip title="Add new Idea"> */}
-                {/* <button onClick={this.add}> */}
-                {/* <MdAdd /><ModeEditIcon /> */}
-                {/* </button> */}
-                {/* </Tooltip> */}
             </div>
         </div>
     )
