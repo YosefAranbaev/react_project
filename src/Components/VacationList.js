@@ -1,12 +1,8 @@
-import { Tooltip, TextField } from '@mui/material';
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import Vacation from './Vacation';
-import { MdAdd } from 'react-icons/md';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import SearchIcon from '@mui/icons-material/Search';
 import Form from './Form';
-import FormButton from "./FormButton";
 import EventEmitter from "../EventEmitter";
 const VacationList = (props) => {
     const [vacations, setVacations] = useState(
@@ -17,8 +13,8 @@ const VacationList = (props) => {
         ])
     const [search, setSearch] = useState("");
 
-    const costColor ={
-        color:'#34A59F',
+    const costColor = {
+        color: '#34A59F',
     }
 
     const update = (newVac) => {
@@ -49,13 +45,13 @@ const VacationList = (props) => {
     const findVacations = () => {
         console.log(search);
         console.log(vacations);
-        if (search === "") {
-            setVacations(prevState => (
-                prevState.map(
-                    vac => vac.idea.includes(search) === false ? vac : { ...vac, display: 'display' }
-                )
-            ));
-        }
+
+        setVacations(prevState => (
+            prevState.map(
+                vac => vac.idea.includes(search) === false ? vac : { ...vac, display: 'display' }
+            )
+        ));
+
         if (search !== "") {
             setVacations(prevState => (
                 prevState.map(
@@ -78,9 +74,9 @@ const VacationList = (props) => {
             vacationToEdit.group = 'none';
         if (vacationToEdit.cost == null)
             vacationToEdit.cost = '$0';
-        if (vacationToEdit.img != "images/image.png"||vacationToEdit.img != "images/image-1.png"
-        ||vacationToEdit.img != "images/image-2.png"||vacationToEdit.img != "images/image-3.png"
-        ||vacationToEdit.img != "images/image-4.png"||vacationToEdit.img != "images/image-5.png")
+        if (vacationToEdit.img !== "images/image.png" || vacationToEdit.img !== "images/image-1.png"
+            || vacationToEdit.img !== "images/image-2.png" || vacationToEdit.img !== "images/image-3.png"
+            || vacationToEdit.img !== "images/image-4.png" || vacationToEdit.img !== "images/image-5.png")
             vacationToEdit.img = 'images/image.png';
         setVacations(prevState => [...prevState, vacationToEdit])
         console.log(vacations);

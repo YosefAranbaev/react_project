@@ -20,7 +20,7 @@ const FormField = (props) => {
     return (<div>
         <div style={fieldTitle}>{props.type}</div>
         <input style={nameField} onChange={props.onChange} placeholder={props.type} value={props.value} 
-        type="text" name={props.name} className="forminput" autocomplete="off" />
+        type="text" name={props.name} className="forminput" autoComplete="off" />
     </div>);
 };
 
