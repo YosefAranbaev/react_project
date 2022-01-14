@@ -1,5 +1,3 @@
-import FormField from "./FormField";
-// import AccessPlusIcon from '@material-ui/icons/AccessAlarm';
 const FormButton = (props) => {
     const button = {
         position: 'absolute',
@@ -16,7 +14,7 @@ const FormButton = (props) => {
 
     }
     return (
-        <button style={button}>+</button>
+        <button onClick={props.onClick} style={button}>+</button>
     );
 };
 export default FormButton;

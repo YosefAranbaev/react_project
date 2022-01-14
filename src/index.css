@@ -6,7 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #F6F7FB;
-  ;
+  width: 1500px;
+  margin: 0 auto;
 }
 
 code {
@@ -113,8 +114,8 @@ code {
   background: #FFFFFF;
   box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.02);
   border-radius: 26px;
-  text-align: center;
   border-style: none;
+  padding-left: 47px;
 }
 
 .forminput::placeholder {
@@ -132,16 +133,13 @@ code {
   position: absolute;
   margin-left: 180px;
   margin-top: 48px;
-  /* width: 18.75px;
-  height: 18.75px; */
-  /* margin-left: 2px;
-  margin-top: 2px; */
 }
-
-/* .card h4{
-  margin-top: -10px;
+.search::placeholder{
+  position: absolute;
+  margin-top: 17px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #AFAFAF;
 }
-.edit{
-  margin-left: 1195.59px;
-  margin-top: -100px;
-} */
